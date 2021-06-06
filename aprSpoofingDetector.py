@@ -47,7 +47,7 @@ def main():
         try:
             attacked = process_sniffed_packet(pkt)
             if attacked:
-                print("!!! You are under ARP attack!")
+                print("You are under ARP spoofing attack!!!")
                 print("Ip address: " + ip)
                 print("Previous mac address: " + macIpMap[ip])
                 print("Current mac address: " + mac)
