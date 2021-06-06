@@ -16,16 +16,16 @@ macIpMap = {}
 # defining function to process packet
 def process_sniffed_packet(packet):
     global mac, ip, macIpMap
-    if ARP in packet and packet[ARP].op in (1,2):
-       # get mac and ip address of packet
-        mac = packet.hwsrc
-        ip = packet.psrc
-    # comparing values of MAC Addresses macIpMap[ip] = mac
-    if any(ip in dict for dict in macIpMap):
-        if macIpMap[ip] != mac:
-            attacked = True
-        else:
-            attacked = False
+    # get mac and ip address of packet
+    mac = packet.hwsrc
+    ip = packet.psrc
+    # comparing values of MAC Addresses with map macIpMap[ip]
+    if any(ip in map for map in macIpMap):
+        if ARP in packet and packet[ARP].op in (1,2):
+            if macIpMap[ip] != mac :
+                attacked = True
+            else:
+                attacked = False
     else:
         macIpMap[ip] = mac
         attacked = False
@@ -51,6 +51,8 @@ def main():
                 print("Ip address: " + ip)
                 print("Previous mac address: " + macIpMap[ip])
                 print("Current mac address: " + mac)
+                #for i in macIpMap:
+                 #   print (i + "___" + macIpMap[i])
                 return
 
         except:
