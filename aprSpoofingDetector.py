@@ -51,8 +51,6 @@ def main():
                 print("Ip address: " + ip)
                 print("Previous mac address: " + macIpMap[ip])
                 print("Current mac address: " + mac)
-                #for i in macIpMap:
-                 #   print (i + "___" + macIpMap[i])
                 return
 
         except:
